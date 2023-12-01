@@ -1,0 +1,26 @@
+################################################
+# Docker en mode DEV
+#
+# React is in 3000 port
+#
+# RUN:
+# docker build -f Doclerfile.dev .
+# docker run -p 3000:3000 <container-id>
+#
+# LAUNCH :
+# http://localhost:3000
+################################################
+
+# Use an existing docker image as a base
+FROM node:current-alpine
+
+WORKDIR /app
+
+COPY package.json . 
+
+RUN npm install
+ 
+COPY . .
+
+# Tell the image what to do when it starts a container
+CMD ["npm", "run", "start"]
